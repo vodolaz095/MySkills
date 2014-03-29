@@ -1,52 +1,37 @@
-var express = require('express');
-//var http = require('http');
-//var path = require('path');
-var fs = require('fs');
-var passport = require('passport');
-logger = require('mean-logger');
+/**
+ * app.js
+ *
+ * Use `app.js` to run your app without `sails lift`.
+ * To start the server, run: `node app.js`.
+ * 
+ * This is handy in situations where the sails CLI is not relevant or useful.
+ *
+ * For example:
+ *   => `node app.js`
+ *   => `forever start app.js`
+ *   => `node debug app.js`
+ *   => `modulus deploy`
+ *   => `heroku scale`
+ * 
+ *
+ * The same command-line arguments are supported, e.g.:
+ * `node app.js --silent --port=80 --prod`
+ */
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+// Ensure a "sails" can be located:
+var sails;
+try {
+	sails = require('sails');
+}
+catch (e) {
+	console.error('To run an app using `node app.js`, you usually need to have a version of `sails` installed in the same directory as your app.');
+	console.error('To do that, run `npm install sails`');
+	console.error('');
+	console.error('Alternatively, if you have sails installed globally (i.e. you did `npm install -g sails`), you can use `sails lift`.');
+	console.error('When you run `sails lift`, your app will still use a local `./node_modules/sails` dependency if it exists,');
+	console.error('but if it doesn\'t, the app will run with the global sails instead!');
+	return;
+}
 
-
-var config = require('./config/config');
-var auth = require('./config/middlewares/authorization');
-var mongoose = require('mongoose');
-
-var db = mongoose.connect(config.db);
-
-var models_path = __dirname + '/app/models';
-var walk = function(path) {
-    fs.readdirSync(path).forEach(function(file) {
-        var newPath = path + '/' + file;
-        var stat = fs.statSync(newPath);
-        if (stat.isFile()) {
-            if (/(.*)\.(js$|coffee$)/.test(file)) {
-                require(newPath);
-            }
-        } else if (stat.isDirectory()) {
-            walk(newPath);
-        }
-    });
-};
-walk(models_path);
-
-
-require('./config/passport')(passport);
-
-var app = express();
-
-require('./config/express')(app, passport, db);
-
-require('./config/routes')(app, passport, auth);
-
-
-// Start the app by listening on <port>
-var port = process.env.PORT || config.port;
-app.listen(port);
-console.log('Express app started on port ' + port);
-
-// Initializing logger
-logger.init(app, passport, mongoose);
-
-// Expose app
-exports = module.exports = app;
+// Start server
+sails.lift();

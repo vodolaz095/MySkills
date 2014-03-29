@@ -1,0 +1,13 @@
+<div style="height:45px; margin-bottom:-45px;" data-ng-include="'/views/header.html'" data-role="navigation" class="navbar navbar-inverse navbar-static-top"></div>
+
+<section style="padding-top:60px; padding-bottom:60px" class="container main_container">
+    <div ui-view></div>
+    <script type="text/javascript">window.user = <%- JSON.stringify(req.user) %>;</script>
+</section>
+<footer style="padding-top: 10px; margin-top:-45px; height:45px;" class="container">
+    <div class="row">
+        <!--div><a href="http://madeinjlm.org/"><img src="/images/madeinjlm.png" class="MadeInJlm"/></a></div-->
+        <div class="text-center col-xs-6 col-xs-offset-3">© 2014 - MySkills</div>
+        <div style="text-align:right;" class="col-xs-3"><a href="/feedback">Feedback</a></div>
+    </div>
+</footer>

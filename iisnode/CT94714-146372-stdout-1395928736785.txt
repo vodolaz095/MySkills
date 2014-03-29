@@ -1,1 +1,0 @@
-Express app started on port \\.\pipe\ecb65945-c44e-4b99-99ba-5601875d2f9c

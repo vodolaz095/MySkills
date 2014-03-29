@@ -1,65 +1,112 @@
-module.exports = function (app, passport, auth) {
+/**
+ * Routes
+ *
+ * Your routes map URLs to views and controllers.
+ *
+ * If Sails receives a URL that doesn't match any of the routes below,
+ * it will check for matching files (images, scripts, stylesheets, etc.)
+ * in your assets directory.  e.g. `http://localhost:1337/images/foo.jpg`
+ * might match an image file: `/assets/images/foo.jpg`
+ *
+ * Finally, if those don't match either, the default 404 handler is triggered.
+ * See `config/404.js` to adjust your app's 404 logic.
+ *
+ * Note: Sails doesn't ACTUALLY serve stuff from `assets`-- the default Gruntfile in Sails copies
+ * flat files from `assets` to `.tmp/public`.  This allows you to do things like compile LESS or
+ * CoffeeScript for the front-end.
+ *
+ * For more information on routes, check out:
+ * http://sailsjs.org/#documentation
+ */
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
+
+module.exports.routes = {
 
 
-    var users = require('../app/controllers/users');
-    app.get('/api/users', users.all);
-//    app.get('/users/sample', users.sample);
-    app.get('/api/users/:username', users.byUsername);
+    // Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, etc. depending on your
+    // default view engine) your home page.
+    //
+    // (Alternatively, remove this and add an `index.html` file in your `assets` directory)
+    '/': {
+        view: 'angular'
+    },
+    '/skills': {
+        view: 'angular'
+    },
+    '/skills/:stam': {
+        view: 'angular'
+    },
+//    '/scores': {
+//        view: 'angular'
+//    },
+//    '/scores/:stam': {
+//        view: 'angular'
+//    },
+    '/api/scores': {
+        controller: 'score',
+        action: 'list'
+    },
+    '/api/scores/skill/:id': {
+        controller: 'score',
+        action: 'bySkillId'
+    },
+    '/api/scores/user/:id': {
+        controller: 'score',
+        action: 'byUserId'
+    },
+    '/api/users/:username': {
+        controller: 'user',
+        action: 'byUsername'
+    },
+    '/api/friends': {
+        controller: 'facebook',
+        action: 'getFriends'
+    },
+    '/api/vote': {
+        controller: 'vote',
+        action: 'saveVote'
+    },
+
+    '/auth/facebook': passport.authenticate('facebook', { scope: ['email'] }),
+    '/auth/facebook/callback': passport.authenticate('facebook', {successRedirect: '/auth/temp'}),
+    '/auth/temp': {
+        controller: 'auth',
+        action: 'temp'
+    },
+    '/auth/logout':{
+        controller:'auth',
+        action:'logout'
+    },
+//    '/auth/facebook': {
+//        controller: 'auth',
+//        action: 'facebook'
+//    },
+//    '/auth/facebook/callback': {
+//        controller: 'auth',
+//        action: 'facebookCallback'
+//    },
+
+    '/feedback': {
+        view: 'angular'
+    },
+
+    '/:username': {
+        view: 'angular'
+    },
+    '/top/:skill': {
+        view: 'angular'
+    }
 
 
-    // Setting up the userId param
-    app.param('userId', users.user);
 
 
-    var skills = require('../app/controllers/skills');
-    app.get('/skills', skills.all);
-    app.get('/skills/:skillId', skills.show);
-    app.post('/skills', auth.requiresLogin, skills.create);
-    app.param('skillId', skills.skill);
 
-    var votes = require('../app/controllers/votes');
-//    app.get('/votes',votes.all);
-//    app.get('/votes/sample', votes.sample);
-//    app.get('/votes/:userId', votes.byUser);
-//    app.get('/api/myvote/:skillId/:userId', votes.bySkillAndUser);
-//    app.get('/form',votes.form);
-    app.post('/api/votes', auth.requiresLogin, votes.submit);
-//    app.post('/api/votes', votes.submit);
+    // Custom routes here...
 
-    var facebook = require('../app/controllers/facebook');
-    app.get('/api/friends', facebook.getRandomFriends);
-//    app.get('/api/sarah',facebook.getDetails);
 
-    var scores = require('../app/controllers/scores');
-    app.get('/scores', scores.all);
-    app.get('/api/scores/:userId', scores.byUserId);
-    app.get('/api/allscores/:userId', scores.allSkills);
+    // If a request to a URL doesn't match any of the custom routes above, it is matched
+    // against Sails route blueprints.  See `config/blueprints.js` for configuration options
+    // and examples.
 
-    // Setting the facebook oauth routes
-//    app.get('/auth/facebook', passport.authenticate('facebook', {
-//        scope: ['email', 'user_about_me']
-//    }));
-    app.get('/auth/facebook', passport.authenticate('facebook'));
-
-    app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-    }), users.authCallback);
-
-    app.get('/signout', function (req, res) {
-        req.logout();
-        res.redirect('/');
-    });
-
-//    var skills = require('../app/controllers/old/skills');
-//    app.get('/skills', skills.list);
-//    app.get('/skills/:id', skills.details);
-//    app.post('/skills', skills.new);
-
-    // Home route
-    var index = require('../app/controllers/index');
-    //app.get('/users/:username', index.render);
-    app.get('*', index.render);
-    app.get('/', index.render);
-//    app.get('*', function(req, res) {
-//        res.redirect('/');
-//    });
 };

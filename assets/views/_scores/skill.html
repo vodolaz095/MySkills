@@ -1,0 +1,10 @@
+<section data-ng-controller="scoresController" data-ng-init="findBySkill()">
+    <h1>Scores by skill</h1>
+    <ul class="list-unstyled">
+        <li data-ng-repeat="score in scores">
+            {{score.skill}} - {{score.user}} - {{score.score}} - {{score.votes}}
+        </li>
+    </ul>
+    <h3 data-ng-hide="!scores || scores.length">No scores</h3>
+    Test = {{test}}
+</section>

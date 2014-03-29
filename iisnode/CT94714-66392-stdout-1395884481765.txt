@@ -1,8 +1,0 @@
-Express app started on port \\.\pipe\a72a3d41-b596-44e0-823f-cea80b9c566d
-{ [MongoError: E11000 duplicate key error index: myskills.users.$username_1  dup key: { : null }]
-  name: 'MongoError',
-  err: 'E11000 duplicate key error index: myskills.users.$username_1  dup key: { : null }',
-  code: 11000,
-  n: 0,
-  connectionId: 3162,
-  ok: 1 }

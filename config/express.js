@@ -1,89 +1,98 @@
-var express = require('express');
-var mongoStore = require('connect-mongo')(express);
-var flash = require('connect-flash');
-var helpers = require('view-helpers');
+/**
+ * Configure advanced options for the Express server inside of Sails.
+ *
+ * For more information on configuration, check out:
+ * http://sailsjs.org/#documentation
+ */
+module.exports.express = {
 
-var config = require('./config');
+
+	// The middleware function used for parsing the HTTP request body.
+	// (this most commonly comes up in the context of file uploads)
+	//
+	// Defaults to a slightly modified version of `express.bodyParser`, i.e.:
+	// If the Connect `bodyParser` doesn't understand the HTTP body request 
+	// data, Sails runs it again with an artificial header, forcing it to try
+	// and parse the request body as JSON.  (this allows JSON to be used as your
+	// request data without the need to specify a 'Content-type: application/json'
+	// header)
+	// 
+	// If you want to change any of that, you can override the bodyParser with
+	// your own custom middleware:
+	// bodyParser: function customBodyParser (options) { ... },
+	// 
+	// Or you can always revert back to the vanilla parser built-in to Connect/Express:
+	// bodyParser: require('express').bodyParser,
+	// 
+	// Or to disable the body parser completely:
+	// bodyParser: false,
+	// (useful for streaming file uploads-- to disk or S3 or wherever you like)
+	//
+	// WARNING
+	// ======================================================================
+	// Multipart bodyParser (i.e. express.multipart() ) will be removed
+	// in Connect 3 / Express 4.
+	// [Why?](https://github.com/senchalabs/connect/wiki/Connect-3.0)
+	//
+	// The multipart component of this parser will be replaced
+	// in a subsequent version of Sails (after v0.10, probably v0.11) with:
+	// [file-parser](https://github.com/mikermcneil/file-parser)
+	// (or something comparable)
+	// 
+	// If you understand the risks of using the multipart bodyParser,
+	// and would like to disable the warning log messages, uncomment:
+	// silenceMultipartWarning: true,
+	// ======================================================================
 
 
-module.exports = function (app, passport, db) {
-    app.set('showStackError', true);
 
-    app.locals.pretty = true;
+	// Cookie parser middleware to use
+	//			(or false to disable)
+	//
+	// Defaults to `express.cookieParser`
+	//
+	// Example override:
+	// cookieParser: (function customMethodOverride (req, res, next) {})(),
 
-    app.use(express.compress({
-        filter: function (req, res) {
-            return (/json|text|javascript|css/).test(res.getHeader('Content-Type'));
-        },
-        // Levels are specified in a range of 0 to 9, where-as 0 is
-        // no compression and 9 is best compression, but slowest
-        level: 9
-    }));
 
-    if (process.env.NODE_ENV === 'development') {
-        app.use(express.logger('dev'));
-    }
 
-    app.set('views', config.root + '/app/views');
-    app.set('view engine', 'jade');
+	// HTTP method override middleware
+	//			(or false to disable)
+	//
+	// This option allows artificial query params to be passed to trick 
+	// Sails into thinking a different HTTP verb was used.
+	// Useful when supporting an API for user-agents which don't allow 
+	// PUT or DELETE requests
+	//
+	// Defaults to `express.methodOverride`
+	//
+	// Example override:
+	// methodOverride: (function customMethodOverride (req, res, next) {})()
+};
 
-    app.enable("jsonp callback");
 
-    app.configure(function () {
-        // The cookieParser should be above session
-        app.use(express.cookieParser());
 
-        // Request body parsing middleware should be above methodOverride
-        app.use(express.urlencoded());
-        app.use(express.json());
-        app.use(express.methodOverride());
 
-        // Express/Mongo session storage
-        app.use(express.session({
-            secret: config.sessionSecret,
-            store: new mongoStore({
-                db: db.connection.db,
-                collection: config.sessionCollection
-            })
-        }));
 
-        app.use(flash());
+/**
+ * HTTP Flat-File Cache
+ * 
+ * These settings are for Express' static middleware- the part that serves
+ * flat-files like images, css, client-side templates, favicons, etc.
+ *
+ * In Sails, this affects the files in your app's `assets` directory.
+ * By default, Sails uses your project's Gruntfile to compile/copy those 
+ * assets to `.tmp/public`, where they're accessible to Express.
+ *
+ * The HTTP static cache is only active in a 'production' environment, 
+ * since that's the only time Express will cache flat-files.
+ *
+ * For more information on configuration, check out:
+ * http://sailsjs.org/#documentation
+ */
+module.exports.cache = {
 
-        app.use(helpers(config.app.name));
-
-        // Use passport session
-        app.use(passport.initialize());
-        app.use(passport.session());
-
-        // Setting the fav icon and static folder
-        app.use(express.favicon());
-        app.use(express.static(config.root + '/public'));
-
-        // Routes should be at the last
-        app.use(app.router);
-
-        // Assume "not found" in the error msgs is a 404. this is somewhat
-        // silly, but valid, you can do whatever you like, set properties,
-        // use instanceof etc.
-        app.use(function (err, req, res, next) {
-            // Treat as 404
-            if (~err.message.indexOf('not found')) return next();
-
-            // Log it
-            console.error(err.stack);
-
-            // Error page
-            res.status(500).render('500', {
-                error: err.stack
-            });
-        });
-
-        // Assume 404 since no middleware responded
-        app.use(function (req, res, next) {
-            res.status(404).render('404', {
-                url: req.originalUrl,
-                error: 'Not found'
-            });
-        });
-    });
+	// The number of seconds to cache files being served from disk
+	// (only works in production mode)
+	maxAge: 31557600000
 };

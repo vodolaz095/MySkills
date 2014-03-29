@@ -1,0 +1,25 @@
+<section data-ng-controller="skillsController" data-ng-init="findOne()">
+    <div class="page-header">
+        <!--h1>{{skill.name}}</h1-->
+        <h1>Best Salsa Dancers</h1>
+    </div>
+    <div style="width:500px;" class="container">
+            <ul class="list-unstyled">
+                <li data-ng-repeat="score in scores | orderBy:'-score'" style="padding:10px; position: relative">
+                    <span class="rank">{{$index+1}}</span>
+                <span><a href="/{{score.userUsername}}"><img width="100px" height="100px" class="img-thumbnail"
+                           src="https://graph.facebook.com/{{score.userFacebookId}}/picture?height=100&width=100"/></a></span>
+                    <span style="font-size:25px; margin-left:15px;">{{score.userName}}<br/>
+                        <div skill-rating score="score.myVote" skill="1" user="score.userId"></div>
+                    </span>
+                    <div class="text-center"
+                         style="padding-top:20px; background-color:aliceblue; position:absolute; right:10px; top: 10px; width:100px; height:100px">
+                        <b>{{score.score}}</b><br/><br/>
+                        {{score.votes}} votes
+                    </div>
+
+                </li>
+            </ul>
+
+    </div>
+</section>

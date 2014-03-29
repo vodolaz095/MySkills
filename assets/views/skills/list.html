@@ -1,0 +1,14 @@
+<section data-ng-controller="skillsController" data-ng-init="find()">
+    <ul class="list-unstyled">
+        <li data-ng-repeat="skill in skills | filter:search">
+            <a data-ng-href="/skills/{{skill.id}}">{{skill.name}}</a>
+            (<a data-ng-href="/scores/{{skill.id}}">Scores</a>)
+        </li>
+    </ul>
+    <form role="form" data-ng-submit="create()">
+        <input type="text" data-ng-model="name" id="name" placeholder="Add Skill" required>
+        <input type="submit">
+    </form>
+    <h3 data-ng-hide="!skills || skills.length">No skills</h3>
+    Test = {{test}}
+</section>
