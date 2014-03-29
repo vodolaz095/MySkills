@@ -1,0 +1,84 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #f1f4f9;
+}
+
+.main_container {
+    min-height: 100%;
+    background-color: white;
+}
+
+.star {
+    cursor: pointer;
+    color: #008cba;
+}
+
+.ui-show {
+    transition: all 0.5s ease; /* You should probably browser-prefix this */
+}
+.ui-hide {
+    opacity: 0;
+    transition: all 0.5s ease; /* You should probably browser-prefix this */
+}
+
+.score {
+    background-color: white;
+    color: grey;
+    border: 1px solid lightgrey;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    border-radius: 40px;
+    padding: 0 5px;
+    font-weight: bold;
+    cursor: default;
+    height: 80px;
+    width:80px;
+    line-height:80px;
+}
+
+/* Flipping card */
+
+.flip {
+    -webkit-perspective: 800;
+    /*width: 192px;*/
+    height: 242px;
+    position: relative;
+    /*margin-left:30px;*/
+    margin-top:30px;
+    z-index:1
+}
+
+.flip .card.flipped {
+    -webkit-transform: rotatey(-180deg);
+}
+.flip .card {
+    width: 100%;
+    height: 100%;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: 0.5s;
+}
+.flip .card .face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-backface-visibility: hidden ;
+    z-index: 2;
+    background-color:#FAFAFA;
+    padding:20px;
+    border:1px #D2D2D2 solid;
+    border-radius:3px;
+}
+.flip .card .front {
+    position: absolute;
+    z-index: 1;
+    /*cursor: pointer;*/
+}
+.flip .card .back {
+    -webkit-transform: rotatey(-180deg);
+    /*cursor: pointer;*/
+}

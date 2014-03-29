@@ -1,0 +1,46 @@
+<section data-ng-controller="UsersController" data-ng-init="findOne()">
+    <header class="clearfix" style="margin-bottom:20px;">
+        <div class="pull-left" style="margin-right:20px;">
+            <img width="200px" height="200px" class="img-thumbnail"
+                 src="https://graph.facebook.com/{{user.facebookId}}/picture?height=200&width=200"/>
+        </div>
+        <div>
+            <h1 style="margin-top:0;">{{user.name}}</h1>
+        </div>
+        <div style="padding-top:20px;">
+            <!-- AddThis Button BEGIN -->
+            <a class="addthis_button"
+               href="http://www.addthis.com/bookmark.php?v=300&amp;pubid=ra-52b5904b054d1872"><img
+                    src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16"
+                    alt="Bookmark and Share" style="border:0"/></a>
+            <script type="text/javascript"
+                    src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52b5904b054d1872"></script>
+            <!-- AddThis Button END -->
+        </div>
+        <div>
+            <div style="font-size:small">
+                This page:
+            </div>
+            <div class="well well-sm pull-left center-block">
+                http://myskills.co/{{user.username}}
+            </div>
+            <div class="pull-left">
+                <button class="addthis_button btn-link" style="margin:5px">
+                    Share
+                </button>
+            </div>
+        </div>
+    </header>
+    <div class="col-md-8 col-xs-12" style="margin-bottom:30px">
+        <input class="form-control" type="text" placeholder="Search skills" ng-model="search.skillName"
+               ng-change="showNewCard=true"/>
+        <div ng-repeat="score in scores | filter:search | orderBy:'-votes' | limitTo:6" ng-hide="search.skillName">
+            <div score-card user="user" score="score" skill-name="score.skillName"></div>
+        </div>
+        <div ng-repeat="score in scores | filter:search | orderBy:'-votes' | limitTo:5" ng-hide="!search.skillName">
+            <div score-card user="user" score="score" skill-name="score.skillName"></div>
+            <span>{{checkNewCard(search.skillName, score.skillName)}}</span>
+        </div>
+        <div score-card user="user" skill-name="search.skillName" ng-show="showNewCard"></div>
+    </div>
+</section>

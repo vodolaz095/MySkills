@@ -1,0 +1,20 @@
+<section data-ng-controller="ScoresController" data-ng-init="all()">
+    {{test}}
+    <table style="width:500px;">
+        <tr>
+            <th>User</th>
+            <th>Skill</th>
+            <th>Score</th>
+            <th>Votes</th>
+        </tr>
+        <tr data-ng-repeat="score in scores">
+            <td><a href="/scores/{{score._user.username}}">{{score._user.name}}</a></td>
+            <td>{{score._skill.name}}</td>
+            <td>{{score.scoe}}</td>
+            <td>{{score.votes}}</td>
+        </tr>
+    </table>
+    <h3 data-ng-hide="!scores || scores.length">No scores</h3>
+</section>
+
+

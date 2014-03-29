@@ -1,0 +1,23 @@
+{
+    "name": "myskills",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "express": "3.4.8",
+        "jade": "*",
+        "mysql": "*",
+        "passport": "*",
+        "passport-facebook": "*",
+        "lodash":"*",
+        "mongoose":"*",
+        "mean-logger":"*",
+        "connect-mongo":"*",
+        "connect-flash":"*",
+        "view-helpers":"*",
+        "bower":"*",
+        "async":"*"
+    }
+}

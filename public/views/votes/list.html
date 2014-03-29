@@ -1,0 +1,19 @@
+<section data-ng-controller="votesController" data-ng-init="all()">
+    <table style="width:500px;">
+        <tr>
+            <th>voter</th>
+            <th>receiver</th>
+            <th>skill</th>
+            <th>score</th>
+        </tr>
+        <tr data-ng-repeat="vote in votes">
+            <td>{{vote._voter.name}}</td>
+            <td>{{vote._receiver.name}}</td>
+            <td>{{vote._skill.name}}</td>
+            <td>{{vote.score}}</td>
+        </tr>
+    </table>
+    <h3 data-ng-hide="!votes || votes.length">No votes</h3>
+</section>
+
+
