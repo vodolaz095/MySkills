@@ -7,6 +7,12 @@
           <mappings>
             <mapping deploy="/myskills.co" local="$PROJECT_DIR$" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/node_modules" />
+            <excludedPath local="true" path="$PROJECT_DIR$/assets/bower_components" />
+            <excludedPath local="true" path="$PROJECT_DIR$/.tmp" />
+            <excludedPath local="true" path="$PROJECT_DIR$/.idea" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>
