@@ -9,7 +9,7 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
     }])
     .controller('skillsController', ['$scope', '$stateParams', 'skills', 'skillScores', 'vote', function ($scope, $stateParams, skills, skillScores, vote) {
 //        $scope.test = 'OK';
-
+        $scope.hidden = true;
         $scope.find = function () {
             skills.query(function (skills) {
                 $scope.skills = skills;

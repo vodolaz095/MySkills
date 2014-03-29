@@ -96,3 +96,13 @@ img.MadeInJlm {
     -webkit-transform: rotatey(-180deg);
     /*cursor: pointer;*/
 }
+
+.votingStars{
+    display:none
+}
+.userScoreBox:hover + .votingStars{
+    display:block
+}
+.hidden{
+    display:none;
+}
