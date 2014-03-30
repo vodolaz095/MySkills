@@ -6,112 +6,6 @@
  */
 
 module.exports = {
-    list: function (req, res, next) {
-        if (req.query.skill) {
-//            Skill.findOne()
-//                .where({id: req.query.skill})
-//                .then(function (skill) {
-//                    var scores = Score.find({skill: req.query.skill}).then(function (scores) {
-//                        return scores;
-//                    });
-//                    return [skill.id, skill.name, scores];
-//                })
-//                .spread(function (skillId, skillName, scores) {
-//                    res.jsonp({
-//                        skill: {
-//                            id: skillId,
-//                            name: skillName
-//                        },
-//                        scores: scores.user
-//                    });
-//                    console.log(skillId);
-//                    console.log(skillName);
-//                    console.log(scores);
-//                });
-
-
-            Score.find()
-//                .populate('skill')
-                .where({skill: req.query.skill})
-                .sort('score desc', 'votes desc')
-////                .populate('user')
-//
-                .exec(function (err, scores) {
-                    if (err)
-                        console.log(err);
-                    res.json(scores);
-                });
-        } else if (req.query.user) {
-            Score.find()
-                .where({user: req.query.user})
-                .sort('score desc', 'votes desc')
-//                .populate('user')
-//                .populate('skill')
-                .exec(function (err, scores) {
-                    if (err)
-                        console.log(err);
-                    res.json(scores);
-                });
-        } else {
-            Score.find()
-                .sort('score desc', 'votes desc')
-                .exec(function (err, scores) {
-                    if (err)
-                        console.log(err);
-                    res.json(scores);
-                });
-        }
-//            .then(function(score){
-//                var myVote =
-//                    Vote.findOne()
-//                    .where({voter: 1})
-//                    .where({skill: score.skill.id})
-//                    .then(function(myVote){
-//                            return myVote
-//                            });
-//                        return myVote,
-//                                .exec(function (err, scores) {
-//                                    var data = [];
-//                                    scores.forEach(function (score) {
-//                                            if (req.query.skill) {
-//                                                if (score.skill.id == req.query.skill) {
-//                                                    console.log('ok');
-//                                                    Vote.findOne()
-//                                                        .where({voter: 1})
-//                                                        .where({skill: score.skill.id})
-//                                                        .exec(function (err, vote) {
-//                                                            console.log('cool');
-//                                                            data.push({
-//                                                                user: {
-//                                                                    username: score.user.username,
-//                                                                    name: score.user.name,
-//                                                                    id: score.user.id,
-//                                                                    facebookId: score.user.facebookId
-//                                                                },
-//                                                                skill: {
-//                                                                    id: score.skill.id,
-//                                                                    name: score.skill.name
-//                                                                },
-//                                                                score: score.score,
-//                                                                votes: score.votes,
-//                                                                vote: vote.score
-//                                                            })
-//                                                        });
-//                                                }
-//                                            } else if (req.query.user) {
-//                                                if (score.user.id == req.query.user) {
-//                                                    data.push(score)
-//                                                }
-//                                            } else {
-//                                                data.push(score)
-//                                            }
-//                                        }
-//                                    );
-//                                    res.json(data);
-//                                });
-//                        }
-//        }
-    },
     bySkillId: function (req, res, next) {
         async.parallel([
                 function (callback) {
@@ -142,7 +36,6 @@ module.exports = {
                         });
                 },
                 function (callback) {
-                    console.log(req.isAuthenticated());
                     if (req.isAuthenticated()) {
                         Vote.find()
                             .where({voter: req.user.id})

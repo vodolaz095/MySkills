@@ -43,10 +43,6 @@ module.exports.routes = {
 //    '/scores/:stam': {
 //        view: 'angular'
 //    },
-    '/api/scores': {
-        controller: 'score',
-        action: 'list'
-    },
     '/api/scores/skill/:id': {
         controller: 'score',
         action: 'bySkillId'
