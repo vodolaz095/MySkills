@@ -47,11 +47,12 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
                 username: $stateParams.username
             }, function (user) {
                 $scope.user = user;
-            });
-            userScores.query({
-                userId: 1
-            }, function (scores) {
-                $scope.scores = scores;
+                userScores.query({
+                    userId: user.id
+                }, function (scores) {
+                    $scope.scores = scores;
+                });
+
             });
         };
         $scope.getFriends = function () {
