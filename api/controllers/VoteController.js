@@ -54,7 +54,7 @@ module.exports = {
                     }
 
                 })
-        }else{
+        } else {
             res.json('error');
 
         }
