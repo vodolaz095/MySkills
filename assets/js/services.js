@@ -15,7 +15,6 @@ angular.module('mySkills.services', [])
             _this._data = {
                 user: window.user,
                 authenticated: !!window.user,
-                test: 'TEST'
             };
 
             return _this._data;
@@ -23,6 +22,9 @@ angular.module('mySkills.services', [])
     ])
     .factory('skills', ['$resource', function ($resource) {
         return $resource('/api/skills/:skillId');
+    }])
+    .factory('skillsByName', ['$resource', function ($resource) {
+        return $resource('/api/skills/name/:name');
     }])
 //    .factory('scores', ['$resource', function ($resource) {
 //        return $resource('/api/scores/?skill=:skillId&user=:userId',

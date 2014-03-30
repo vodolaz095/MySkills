@@ -7,7 +7,7 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
         $scope.global = Global;
         $scope.isCollapsed = false;
     }])
-    .controller('skillsController', ['$scope', '$stateParams', 'skills', 'skillScores', function ($scope, $stateParams, skills, skillScores) {
+    .controller('skillsController', ['$scope', '$stateParams', 'skills', 'skillsByName', 'skillScores', function ($scope, $stateParams, skills,skillsByName, skillScores) {
 //        $scope.test = 'OK';
         $scope.hidden = true;
         $scope.find = function () {
@@ -17,17 +17,16 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
         };
         $scope.highlightUser = $stateParams.user;
         $scope.findOne = function () {
-//            var currentSkill = $stateParams.skillId;
-            var currentSkill = 1;
-            skills.get({
-                skillId: currentSkill
+            skillsByName.get({
+                name: $stateParams.skill
             }, function (skill) {
                 $scope.skill = skill;
-            });
-            skillScores.query({
-                skillId: currentSkill
-            }, function (scores) {
-                $scope.scores = scores;
+                skillScores.query({
+                    skillId: skill.id
+                }, function (scores) {
+                    $scope.scores = scores;
+                });
+
             });
         };
         $scope.create = function () {
@@ -48,7 +47,6 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
                 username: $stateParams.username
             }, function (user) {
                 $scope.user = user;
-                console.log(user);
             });
             userScores.query({
                 userId: 1

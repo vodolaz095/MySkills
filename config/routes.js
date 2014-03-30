@@ -54,7 +54,10 @@ module.exports.routes = {
         controller: 'vote',
         action: 'saveVote'
     },
-
+    '/api/skills/name/:name': {
+        controller: 'skill',
+        action: 'byName'
+    },
     '/auth/facebook': passport.authenticate('facebook', { scope: ['email'] }),
     '/auth/facebook/callback': passport.authenticate('facebook', {successRedirect: '/auth/temp'}),
     '/auth/temp': {
