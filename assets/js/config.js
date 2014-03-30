@@ -5,7 +5,7 @@ mySkills
         function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider
                 .when('/users/:username', '/:username')
-                .when('/_=_','/')
+//                .when('/_=_','/')
                 .otherwise('/');
 
             $stateProvider
@@ -22,7 +22,7 @@ mySkills
                     templateUrl: "/views/skills/list.html"
                 })
                 .state('skillDetails', {
-                    url: "/top/:skillId",
+                    url: "/top/{skillId}?user",
                     templateUrl: "/views/skills/details.html"
                 })
 //                .state('skillDetails', {

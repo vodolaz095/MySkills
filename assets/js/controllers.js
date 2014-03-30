@@ -7,7 +7,7 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
         $scope.global = Global;
         $scope.isCollapsed = false;
     }])
-    .controller('skillsController', ['$scope', '$stateParams', 'skills', 'skillScores', 'vote', function ($scope, $stateParams, skills, skillScores, vote) {
+    .controller('skillsController', ['$scope', '$stateParams', 'skills', 'skillScores', function ($scope, $stateParams, skills, skillScores) {
 //        $scope.test = 'OK';
         $scope.hidden = true;
         $scope.find = function () {
@@ -15,6 +15,7 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
                 $scope.skills = skills;
             });
         };
+        $scope.highlightUser = $stateParams.user;
         $scope.findOne = function () {
 //            var currentSkill = $stateParams.skillId;
             var currentSkill = 1;
@@ -39,15 +40,6 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
 
             this.name = '';
         };
-//        $scope.vote = function () {
-//            vote.post({
-//                receiver: 1,
-//                skill: 1,
-//                score: 2
-//            }, function (done) {
-//                console.log('done: ' + done);
-//            })
-//        }
     }])
     .controller('usersController', ['$scope', '$stateParams', 'Global', 'users', 'userScores', 'friends', function ($scope, $stateParams, Global, users, userScores, friends) {
         $scope.global = Global;
