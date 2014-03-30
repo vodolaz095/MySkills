@@ -2,21 +2,18 @@
     <div class="page-header">
         <h1>The best of <b>#{{skill.name}}</b></h1>
     </div>
+
     <div style="width:500px;" class="container">
         <ul class="list-unstyled">
             <li data-ng-repeat="score in scores | orderBy:'rank' | filter:highlightUser"
                 style="padding:10px; position: relative">
-
                 <div ng-mouseover="hidden=false" ng-mouseout="hidden=true">
                     <span class="rank">{{score.rank}}</span>
                 <span><a href="/{{score.userUsername}}"><img width="100px" height="100px" class="img-thumbnail"
                                                              src="https://graph.facebook.com/{{score.userFacebookId}}/picture?height=100&width=100"/></a></span>
-
                     <div style="font-size:25px; position:absolute; left:130px; top:25px">{{score.userName}}</div>
-                    <div ng-class="{hidden: hidden == true}" style="position:absolute; bottom:20px; left:130px"
+                    <div ng-class="{hidden: (hidden == true || score.userId == global.user.id)}" style="position:absolute; bottom:20px; left:130px"
                          skill-rating score="score.myVote" skill="1" user="score.userId"></div>
-
-
                     <div class="text-center"
                          style="padding-top:20px; background-color:aliceblue; position:absolute; right:10px; top: 10px; width:100px; height:100px">
                         <b>{{score.score}}</b><br/><br/>

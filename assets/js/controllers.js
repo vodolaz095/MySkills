@@ -7,8 +7,8 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
         $scope.global = Global;
         $scope.isCollapsed = false;
     }])
-    .controller('skillsController', ['$scope', '$stateParams', 'skills', 'skillsByName', 'skillScores', function ($scope, $stateParams, skills,skillsByName, skillScores) {
-//        $scope.test = 'OK';
+    .controller('skillsController', ['$scope', '$stateParams', 'skills', 'skillsByName', 'skillScores', 'Global', function ($scope, $stateParams, skills, skillsByName, skillScores, Global) {
+        $scope.global = Global;
         $scope.hidden = true;
         $scope.find = function () {
             skills.query(function (skills) {

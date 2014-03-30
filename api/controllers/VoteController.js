@@ -23,34 +23,39 @@ module.exports = {
             var skill = req.param('skill');
             var receiver = req.param('receiver');
 //            var skillName = req.body.skillName;
-        };
-        Vote.findOne({
-            voter: req.user.id,
-            receiver: receiver,
-            skill: skill
-        })
-            .exec(function (err, vote) {
-                if (vote) {
-                    Vote.update(vote.id, {
-                        score: score
-                    })
-                        .exec(function (err, done) {
+        }
+        ;
+        var voter = req.user.id;
+        if (receiver != voter) {
+            Vote.findOne({
+                voter: voter,
+                receiver: receiver,
+                skill: skill
+            })
+                .exec(function (err, vote) {
+                    if (vote) {
+                        Vote.update(vote.id, {
+                            score: score
+                        })
+                            .exec(function (err, done) {
 //                            console.log(done);
+                                res.json('done')
+                            })
+                    } else {
+                        Vote.create({
+                            voter: voter,
+                            receiver: receiver,
+                            skill: skill,
+                            score: score
+                        }).exec(function (err, done) {
+//                        console.log(done);
                             res.json('done')
                         })
-                } else {
-                    Vote.create({
-                        voter: req.user.id,
-                        receiver: receiver,
-                        skill: skill,
-                        score: score
-                    }).exec(function (err, done) {
-//                        console.log(done);
-                        res.json('done')
-                    })
-                }
+                    }
 
-            })
-
+                })
+        }else{
+            res.json('error');
+        }
     }
 };
