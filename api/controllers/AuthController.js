@@ -34,9 +34,9 @@ module.exports = {
     temp: function(req,res){
         if (req.session.tempBody) {
             sails.controllers.vote.saveVote(req,res);
-            res.redirect(req.session.tempReferer);
             req.session.tempBody = "";
             req.session.tempReferer = "";
+            res.redirect(req.session.tempReferer);
         } else {
             res.redirect('/' + req.user.username);
         }
