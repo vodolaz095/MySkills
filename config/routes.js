@@ -23,20 +23,11 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 
 module.exports.routes = {
 
-
     // Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, etc. depending on your
     // default view engine) your home page.
     //
     // (Alternatively, remove this and add an `index.html` file in your `assets` directory)
-    '/': {
-        view: 'angular'
-    },
-    '/skills': {
-        view: 'angular'
-    },
-    '/skills/:stam': {
-        view: 'angular'
-    },
+
 //    '/scores': {
 //        view: 'angular'
 //    },
@@ -70,9 +61,9 @@ module.exports.routes = {
         controller: 'auth',
         action: 'temp'
     },
-    '/auth/logout':{
-        controller:'auth',
-        action:'logout'
+    '/auth/logout': {
+        controller: 'auth',
+        action: 'logout'
     },
 //    '/auth/facebook': {
 //        controller: 'auth',
@@ -83,23 +74,7 @@ module.exports.routes = {
 //        action: 'facebookCallback'
 //    },
 
-    '/feedback': {
-        view: 'angular'
-    },
-
-    '/:username': {
-        view: 'angular'
-    },
-    '/top/:skill': {
-        view: 'angular'
-    }
-
-
-
-
-
     // Custom routes here...
-
 
     // If a request to a URL doesn't match any of the custom routes above, it is matched
     // against Sails route blueprints.  See `config/blueprints.js` for configuration options

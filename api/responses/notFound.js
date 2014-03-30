@@ -34,6 +34,7 @@ module.exports = function notFound() {
     }
 
     // Otherwise, serve the `views/404.*` page
-    res.render(viewFilePath);
+//    res.render(viewFilePath);
+      res.view('angular');
   });
 };
