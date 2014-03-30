@@ -65,8 +65,8 @@ mySkills
 angular.module('mySkills')
     .config(['$locationProvider',
         function ($locationProvider) {
-//            $locationProvider.hashPrefix('!');
             $locationProvider.html5Mode(true);
+            $locationProvider.hashPrefix('!');
         }
     ])
 
