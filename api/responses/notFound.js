@@ -11,7 +11,8 @@
 
 module.exports = function notFound() {
 
-  // Get access to `req` and `res`
+
+//  // Get access to `req` and `res`
   var req = this.req;
   var res = this.res;
 
@@ -25,16 +26,16 @@ module.exports = function notFound() {
   if (req.wantsJSON) {
     return res.json(result, result.status);
   }
-
-  res.status(result.status);
-  res.render(viewFilePath, function(err) {
-    // If the view doesn't exist, or an error occured, send json
-    if (err) {
-      return res.json(result, result.status);
-    }
-
-    // Otherwise, serve the `views/404.*` page
-//    res.render(viewFilePath);
+//
+//  res.status(result.status);
+//  res.render(viewFilePath, function(err) {
+//    // If the view doesn't exist, or an error occured, send json
+//    if (err) {
+//      return res.json(result, result.status);
+//    }
+//
+//    // Otherwise, serve the `views/404.*` page
+////    res.render(viewFilePath);
       res.view('angular');
-  });
+//  });
 };
