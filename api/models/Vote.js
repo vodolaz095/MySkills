@@ -23,10 +23,12 @@ module.exports = {
     afterCreate: function (vote, next) {
         Vote.find()
             .where({receiver: vote.receiver})
+            .where({skill: vote.skill})
             .average('score')
             .exec(function (err, votes) {
                 Vote.count()
                     .where({receiver: vote.receiver})
+                    .where({skill: vote.skill})
                     .exec(function (err, count) {
                         Score.findOne({
                             user: vote.receiver,
@@ -56,10 +58,12 @@ module.exports = {
     afterUpdate: function (vote, next) {
         Vote.find()
             .where({receiver: vote.receiver})
+            .where({skill: vote.skill})
             .average('score')
             .exec(function (err, votes) {
                 Vote.count()
                     .where({receiver: vote.receiver})
+                    .where({skill: vote.skill})
                     .exec(function (err, count) {
                         Score.findOne({
                             user: vote.receiver,
