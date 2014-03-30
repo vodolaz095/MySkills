@@ -41,14 +41,14 @@ module.exports.session = {
     // pass: <redis auth password>
     // prefix: 'sess:'
 
-    adapter: 'memory'
+//    adapter: 'memory'
     // Uncomment the following lines to use your Mongo adapter as a session store
-    // adapter: 'mongo',
+    adapter: 'mongo',
     //
-//    host: 'localhost',
-//    port: 27017,
-//    db: 'sails',
-//    collection: 'sessions',
+    host: 'localhost',
+    port: 27017,
+    db: 'myskills',
+    collection: 'sessions'
     //
     // Optional Values:
     //
