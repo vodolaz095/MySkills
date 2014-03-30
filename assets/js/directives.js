@@ -79,7 +79,7 @@ angular.module('mySkills.directives', [])
                         skill: scope.skill,
                         score: realValue
                     }, function (done) {
-//                        console.log('done');
+                        $window.location.reload(); //TODO: find a more elegant way to rerfesh the score!
                     });
                 };
                 scope.revertBack = function () {
