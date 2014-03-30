@@ -25,6 +25,8 @@ module.exports = {
                     Score
                         .find()
                         .where({skill: req.param('id')})
+                        .sort('score desc')
+                        .sort('votes desc')
                         .exec(function (err, scores) {
                             if (err) {
                                 res.render('error', {
@@ -55,6 +57,7 @@ module.exports = {
                 }],
             function (err, results) {
                 var combined = [];
+                var rank = 0;
                 results[0].forEach(function (user) {
                     var userId = user.id;
                     var userName = user.name;
@@ -77,6 +80,7 @@ module.exports = {
                         }
                     });
                     if (votes > 0) {
+                        rank = rank + 1;
                         combined.push({
                             userId: userId,
                             userName: userName,
@@ -84,7 +88,8 @@ module.exports = {
                             userUsername: userUsername,
                             score: (Math.round(10 * userScore) / 10),
                             votes: votes,
-                            myVote: myVote
+                            myVote: myVote,
+                            rank: rank
                         })
                     }
                     ;

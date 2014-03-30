@@ -21,8 +21,10 @@ img.MadeInJlm {
     font:italic 500 54px/68px "Droid Serif","Georgia",Cambria,Times New Roman,Times,serif;
     color:#63635e;
     position:absolute;
-    left:-40px;
+    left:-70px;
     top:20px;
+    text-align:right;
+    width:60px;
 }
 
 .star {
