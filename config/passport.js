@@ -60,7 +60,8 @@ module.exports = {
                 hostname: 'http://myskills.co',
                 cacheTime: 600000,        // 600 sec - cache purge period
                 urls: [
-                    { url: '/top/salsa-dancing',  changefreq: 'daily', priority: 1.0 }
+                    { url: '/top/salsadancing',  changefreq: 'daily', priority: 1.0 },
+                    { url: '/top/bodybuilding',  changefreq: 'daily', priority: 1.0 }
 //                    { url: '/page-2/',  changefreq: 'monthly',  priority: 0.7 },
 //                    { url: '/page-3/' }     // changefreq: 'weekly',  priority: 0.5
                 ]
