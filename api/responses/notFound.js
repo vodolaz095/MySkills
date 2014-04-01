@@ -3,7 +3,7 @@
  *
  * Usage:
  * return res.notFound();
- * 
+ *
  * NOTE:
  * If no user-defined route, blueprint route, or static file matches
  * the requested URL, Sails will call `res.notFound()`.
@@ -11,10 +11,10 @@
 
 module.exports = function notFound() {
 
-
-//  // Get access to `req` and `res`
+  // Get access to `req`, `res`, `sails`
   var req = this.req;
   var res = this.res;
+  var sails = req._sails;
 
   var viewFilePath = '404';
   var statusCode = 404;
@@ -36,6 +36,6 @@ module.exports = function notFound() {
 //
 //    // Otherwise, serve the `views/404.*` page
 ////    res.render(viewFilePath);
-      res.view('angular');
+    res.view('angular');
 //  });
 };
