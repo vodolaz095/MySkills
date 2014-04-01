@@ -55,6 +55,7 @@ module.exports = {
             app.use(passport.session());
 
             app.use(require('prerender-node').set('prerenderToken', 'eOIHvTdMGsjU4ejVCqLJ'));
+            window.prerenderReady = false;
 
             var sitemap = sm.createSitemap ({
                 hostname: 'http://myskills.co',
