@@ -58,6 +58,10 @@ module.exports.routes = {
         controller: 'skill',
         action: 'byName'
     },
+    '/api/skills/randomBesidesMe/:skill': {
+        controller: 'skill',
+        action: 'randomBesidesMe'
+    },
     '/auth/facebook': passport.authenticate('facebook', { scope: ['email'] }),
     '/auth/facebook/callback': passport.authenticate('facebook', {successRedirect: '/auth/temp'}),
     '/auth/temp': {
