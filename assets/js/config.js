@@ -5,6 +5,7 @@ mySkills
         function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider
                 .when('/users/:username', '/:username')
+                .when('/Users/:username', '/:username')
                 .when('/top/salsa-dancing', '/best-salsa-dancers-in-the-world')
                 .when('/top/salsadancing', '/best-salsa-dancers-in-the-world')
                 .when('/top/bodybuilding', '/best-body-builders-in-the-world')
