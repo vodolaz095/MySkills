@@ -2,7 +2,10 @@
 
 <section style="padding-top:60px; padding-bottom:60px" class="container main_container">
     <div ui-view></div>
-    <script type="text/javascript">window.user = <%- JSON.stringify(req.user) %>;</script>
+    <script type="text/javascript">
+        window.user = <%- JSON.stringify(req.user) %>;
+        window.prerenderReady = false;
+    </script>
 </section>
 <footer style="padding-top: 10px; margin-top:-45px; height:45px;" class="container">
     <div class="row">
