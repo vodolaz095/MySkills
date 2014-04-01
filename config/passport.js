@@ -8,8 +8,8 @@ module.exports = {
             passport.use(new FacebookStrategy({
                     clientID: "601776696548416",
                     clientSecret: "79f658b03d38e43cabfcfcb828fe8c66",
-                    callbackURL: "http://dev.myskills.co:1337/auth/facebook/callback",
-//                    callbackURL: "http://myskills.co/auth/facebook/callback",
+//                    callbackURL: "http://dev.myskills.co:1337/auth/facebook/callback",
+                    callbackURL: "http://myskills.co/auth/facebook/callback",
                     passReqToCallback: true
                 },
                 function (req, accessToken, refreshToken, profile, done) {
@@ -55,7 +55,6 @@ module.exports = {
             app.use(passport.session());
 
             app.use(require('prerender-node').set('prerenderToken', 'eOIHvTdMGsjU4ejVCqLJ'));
-            window.prerenderReady = false;
 
             var sitemap = sm.createSitemap ({
                 hostname: 'http://myskills.co',
