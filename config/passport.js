@@ -8,8 +8,8 @@ module.exports = {
             passport.use(new FacebookStrategy({
                     clientID: "601776696548416",
                     clientSecret: "79f658b03d38e43cabfcfcb828fe8c66",
-//                    callbackURL: "http://dev.myskills.co:1337/auth/facebook/callback",
-                    callbackURL: "http://myskills.co/auth/facebook/callback",
+                    callbackURL: "http://dev.myskills.co:1337/auth/facebook/callback",
+//                    callbackURL: "http://myskills.co/auth/facebook/callback",
                     passReqToCallback: true
                 },
                 function (req, accessToken, refreshToken, profile, done) {
@@ -60,10 +60,9 @@ module.exports = {
                 hostname: 'http://myskills.co',
                 cacheTime: 600000,        // 600 sec - cache purge period
                 urls: [
-                    { url: '/top/salsadancing',  changefreq: 'daily', priority: 1.0 },
-                    { url: '/top/bodybuilding',  changefreq: 'daily', priority: 1.0 }
-//                    { url: '/page-2/',  changefreq: 'monthly',  priority: 0.7 },
-//                    { url: '/page-3/' }     // changefreq: 'weekly',  priority: 0.5
+                    { url: '/best-salsa-dancers-in-the-world',  changefreq: 'daily', priority: 1.0 },
+                    { url: '/best-body-builders-in-the-world',  changefreq: 'daily', priority: 1.0 },
+                    { url: '/best-entrepreneurs-in-the-world',  changefreq: 'daily', priority: 1.0 }
                 ]
             });
 
