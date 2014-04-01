@@ -8,25 +8,26 @@
 module.exports = {
     bySkillId: function (req, res, next) {
         async.parallel([
-                function (callback) {
-                    User
-                        .find()
-                        .exec(function (err, users) {
-                            if (err) {
-                                res.render('error', {
-                                    status: 500
-                                });
-                                return;
-                            }
-                            callback(null, users);
-                        });
-                },
+//                function (callback) {
+//                    User
+//                        .find()
+//                        .exec(function (err, users) {
+//                            if (err) {
+//                                res.render('error', {
+//                                    status: 500
+//                                });
+//                                return;
+//                            }
+//                            callback(null, users);
+//                        });
+//                },
                 function (callback) {
                     Score
                         .find()
                         .where({skill: req.param('id')})
                         .sort('score desc')
                         .sort('votes desc')
+                        .populate('user')
                         .exec(function (err, scores) {
                             if (err) {
                                 res.render('error', {
@@ -58,27 +59,21 @@ module.exports = {
             function (err, results) {
                 var combined = [];
                 var rank = 0;
-                results[0].forEach(function (user) {
-                    var userId = user.id;
-                    var userName = user.name;
-                    var userFacebookId = user.facebookId;
-                    var userUsername = user.username;
-                    var userScore = 0;
-                    var votes = 0;
+                results[0].forEach(function (score) {
+                    var userScore = score.score;
+                    var votes = score.votes;
+                    var userId = score.user.id;
+                    var userName = score.user.name;
+                    var userFacebookId = score.user.facebookId;
+                    var userUsername = score.user.username;
                     var myVote = 0;
-                    results[1].forEach(function (score) {
-                        if (userId.toString() == score.user.toString()) {
-                            userScore = score.score;
-                            votes = score.votes;
-                            if (req.isAuthenticated()) {
-                                results[2].forEach(function (vote) {
-                                    if (userId.toString() == vote.receiver.toString()) {
-                                        myVote = vote.score;
-                                    }
-                                });
+                    if (req.isAuthenticated()) {
+                        results[1].forEach(function (vote) {
+                            if (userId.toString() == vote.receiver.toString()) {
+                                myVote = vote.score;
                             }
-                        }
-                    });
+                        });
+                    }
                     if (votes > 0) {
                         rank = rank + 1;
                         combined.push({
@@ -90,11 +85,34 @@ module.exports = {
                             votes: votes,
                             myVote: myVote,
                             rank: rank
-                        })
-                    }
-                    ;
+                        })}
                 });
                 res.jsonp(combined);
+//                results[0].forEach(function (user) {
+//                    var userId = user.id;
+//                    var userName = user.name;
+//                    var userFacebookId = user.facebookId;
+//                    var userUsername = user.username;
+//                    var userScore = 0;
+//                    var votes = 0;
+//                    var myVote = 0;
+//                    results[1].forEach(function (score) {
+//                        if (userId.toString() == score.user.toString()) {
+//                            userScore = score.score;
+//                            votes = score.votes;
+//                            if (req.isAuthenticated()) {
+//                                results[2].forEach(function (vote) {
+//                                    if (userId.toString() == vote.receiver.toString()) {
+//                                        myVote = vote.score;
+//                                    }
+//                                });
+//                            }
+//                        }
+//                    });
+
+
+//                });
+//                res.jsonp(combined);
             }
         )
     },
