@@ -8,7 +8,7 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
         $scope.isCollapsed = false;
         $rootScope.title = "MySkills";
     }])
-    .controller('skillsController', ['$rootScope', '$scope', '$stateParams', 'skills', 'skillsByName', 'skillScores', 'Global', function ($rootScope, $scope, $stateParams, skills, skillsByName, skillScores, Global) {
+    .controller('skillsController', ['$rootScope', '$scope', '$stateParams', 'skills', 'skillsByName', 'skillScores', 'Global', 'randomSkills', function ($rootScope, $scope, $stateParams, skills, skillsByName, skillScores, Global, randomSkills) {
         $scope.global = Global;
         $scope.hidden = true;
         $scope.find = function () {
@@ -28,6 +28,12 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
                 }, function (scores) {
                     $scope.scores = scores;
                 });
+
+                randomSkills.query({
+                    skillId: skill.id
+                }, function (randomSkills) {
+                    $scope.randomSkills = randomSkills;
+                })
 
             });
         };

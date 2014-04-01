@@ -26,6 +26,10 @@ angular.module('mySkills.services', [])
     .factory('skillsByName', ['$resource', function ($resource) {
         return $resource('/api/skills/name/:name');
     }])
+    .factory('randomSkills', ['$resource', function ($resource) {
+        return $resource('/api/skills/randomBesidesMe/:skillId',
+            {isArray: true});
+    }])
 //    .factory('scores', ['$resource', function ($resource) {
 //        return $resource('/api/scores/?skill=:skillId&user=:userId',
 //            {isArray: true});
@@ -45,8 +49,8 @@ angular.module('mySkills.services', [])
         return $resource('/api/friends');
     }])
     .factory('vote', ['$resource', function ($resource) {
-        return $resource('/api/vote',{},{
-            post: {method:'POST'}
+        return $resource('/api/vote', {}, {
+            post: {method: 'POST'}
         });
     }])
 
