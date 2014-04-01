@@ -5,7 +5,9 @@ mySkills
         function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider
                 .when('/users/:username', '/:username')
-                .when('/top/salsa-dancing', '/top/salsadancing')
+                .when('/top/salsa-dancing', '/best-salsa-dancers-in-the-world')
+                .when('/top/salsadancing', '/best-salsa-dancers-in-the-world')
+                .when('/top/bodybuilding', '/best-body-builders-in-the-world')
 //                .when('/_=_','/')
                 .otherwise('/');
 
@@ -23,9 +25,14 @@ mySkills
                     templateUrl: "/views/skills/list.html"
                 })
                 .state('skillDetails', {
-                    url: "/top/{skill}?user",
+                    title: "best-{skill}-in-the-world",
+                    url: "/best-{skill}-in-the-world?user",
                     templateUrl: "/views/skills/details.html"
                 })
+//                .state('skillDetails', {
+//                    url: "/top/{skill}?user",
+//                    templateUrl: "/views/skills/details.html"
+//                })
 //                .state('skillDetails', {
 //                    url: "/top/salsa-dancing",
 //                    templateUrl: "/views/skills/details.html"

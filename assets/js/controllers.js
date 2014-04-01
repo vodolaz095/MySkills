@@ -3,11 +3,12 @@
 /* Controllers */
 
 angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
-    .controller('HeaderController', ['$scope', 'Global', function ($scope, Global) {
+    .controller('HeaderController', ['$rootScope', '$scope', 'Global', function ($rootScope, $scope, Global) {
         $scope.global = Global;
         $scope.isCollapsed = false;
+        $rootScope.title = "MySkills";
     }])
-    .controller('skillsController', ['$scope', '$stateParams', 'skills', 'skillsByName', 'skillScores', 'Global', function ($scope, $stateParams, skills, skillsByName, skillScores, Global) {
+    .controller('skillsController', ['$rootScope', '$scope', '$stateParams', 'skills', 'skillsByName', 'skillScores', 'Global', function ($rootScope, $scope, $stateParams, skills, skillsByName, skillScores, Global) {
         $scope.global = Global;
         $scope.hidden = true;
         $scope.find = function () {
@@ -20,6 +21,7 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
             skillsByName.get({
                 name: $stateParams.skill
             }, function (skill) {
+                $rootScope.title = "Best " + skill.plural + " in the world";
                 $scope.skill = skill;
                 skillScores.query({
                     skillId: skill.id
@@ -40,12 +42,13 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
             this.name = '';
         };
     }])
-    .controller('usersController', ['$scope', '$stateParams', 'Global', 'users', 'userScores', 'friends', function ($scope, $stateParams, Global, users, userScores, friends) {
+    .controller('usersController', ['$rootScope', '$scope', '$stateParams', 'Global', 'users', 'userScores', 'friends', function ($rootScope, $scope, $stateParams, Global, users, userScores, friends) {
         $scope.global = Global;
         $scope.findOneByUsername = function () {
             users.get({
                 username: $stateParams.username
             }, function (user) {
+                $rootScope.title = user.name + " - MySkills";
                 $scope.user = user;
                 userScores.query({
                     userId: user.id
@@ -74,6 +77,12 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
             }
         };
     }])
+    .controller('generalController', ['$rootScope', '$scope', function ($rootScope, $scope) {
+        $scope.feedback = function () {
+            $rootScope.title = "Feedback - MySkills";
+        }
+    }
+    ]);
 //    .controller('scoresController', ['$scope', '$stateParams', 'scores', function ($scope, $stateParams, scores) {
 //        $scope.test = 'OK';
 //
