@@ -37,6 +37,9 @@ module.exports.routes = {
     '/:anything': {
         view: 'angular'
     },
+    '/users/:anything':{
+        view:'angular'
+    },
 //    '/scores/:stam': {
 //        view: 'angular'
 //    },
