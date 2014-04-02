@@ -33,7 +33,7 @@
     <div class="container">
         <ul class="list-unstyled">
             <li data-ng-repeat="randomSkill in randomSkills">
-                <a href="/best-{{randomSkill.plural}}-in-the-world">Best {{randomSkill.plural}} in the world</a>
+                <a href="/best-{{randomSkill.plural.replace(' ','-').toLowerCase()}}-in-the-world">Best {{randomSkill.plural}} in the world</a>
             </li>
         </ul>
     </div>
