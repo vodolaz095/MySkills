@@ -27,10 +27,13 @@ module.exports.routes = {
     // default view engine) your home page.
     //
     // (Alternatively, remove this and add an `index.html` file in your `assets` directory)
+    '/top/salsa-dancing': '/best-salsa-dancers-in-the-world',
+    '/top/salsadancing': '/best-salsa-dancers-in-the-world',
+    '/top/bodybuilding': '/best-body-builders-in-the-world',
 
-//    '/': {
-//        view: 'angular'
-//    },
+    '/': {
+        view: 'angular'
+    },
 //    '/scores/:stam': {
 //        view: 'angular'
 //    },
