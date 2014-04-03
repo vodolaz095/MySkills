@@ -31,14 +31,11 @@ module.exports.routes = {
     '/top/salsadancing': '/best-salsa-dancers-in-the-world',
     '/top/bodybuilding': '/best-body-builders-in-the-world',
 
-//    '/': {
-//        controller: 'general',
-//        action: 'angular'
-//    },
     '/': {
         view:'angular'
     },
     '/:anything': {
+        view:'angular'
     },
     '/users/:anything':{
         view:'angular'
