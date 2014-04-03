@@ -1,6 +1,7 @@
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var sm = require('sitemap');
+var seojs = require('express-seojs');
 
 module.exports = {
     express: {
@@ -54,7 +55,9 @@ module.exports = {
             app.use(passport.initialize());
             app.use(passport.session());
 
-            app.use(require('prerender-node').set('prerenderToken', 'eOIHvTdMGsjU4ejVCqLJ'));
+//            app.use(require('prerender-node').set('prerenderToken', 'eOIHvTdMGsjU4ejVCqLJ'));
+
+            app.use(seojs('AADfW9tF7d'));
 
             var sitemap = sm.createSitemap ({
                 hostname: 'http://myskills.co',
