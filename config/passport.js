@@ -9,8 +9,8 @@ module.exports = {
             passport.use(new FacebookStrategy({
                     clientID: "601776696548416",
                     clientSecret: "79f658b03d38e43cabfcfcb828fe8c66",
-                    callbackURL: "http://dev.myskills.co:1337/auth/facebook/callback",
-//                    callbackURL: "http://myskills.co/auth/facebook/callback",
+//                    callbackURL: "http://dev.myskills.co:1337/auth/facebook/callback",
+                    callbackURL: "http://myskills.co/auth/facebook/callback",
                     passReqToCallback: true
                 },
                 function (req, accessToken, refreshToken, profile, done) {
@@ -57,7 +57,7 @@ module.exports = {
 
 //            app.use(require('prerender-node').set('prerenderToken', 'eOIHvTdMGsjU4ejVCqLJ'));
 
-            app.use(seojs('AADfW9tF7d'));
+//            app.use(seojs('AADfW9tF7d'));
 
             var sitemap = sm.createSitemap ({
                 hostname: 'http://myskills.co',
@@ -74,6 +74,39 @@ module.exports = {
                     res.header('Content-Type', 'application/xml');
                     res.send( xml );
                 });
+            });
+
+
+
+            app.use(function(req, res, next) {
+                var fragment = req.query._escaped_fragment_;
+
+                // If there is no fragment in the query params
+                // then we're not serving a crawler
+                if (!fragment) return next();
+
+                // If the fragment is empty, serve the
+                // index page
+                if (fragment === "" || fragment === "/")
+                    fragment = "/index.html";
+
+                // If fragment does not start with '/'
+                // prepend it to our fragment
+                if (fragment.charAt(0) !== "/")
+                    fragment = '/' + fragment;
+
+                // If fragment does not end with '.html'
+                // append it to the fragment
+                if (fragment.indexOf('.html') == -1)
+                    fragment += ".html";
+
+                // Serve the static html snapshot
+                try {
+                    var file = __dirname + "/snapshots" + fragment;
+                    res.sendfile(file);
+                } catch (err) {
+                    res.send(404);
+                }
             });
 
         }
