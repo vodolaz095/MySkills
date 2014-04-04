@@ -8,7 +8,7 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
         $scope.isCollapsed = false;
         $rootScope.title = "MySkills";
     }])
-    .controller('skillsController', ['$rootScope', '$scope', '$stateParams', 'skills', 'skillsByName', 'skillScores', 'Global', 'randomSkills', function ($rootScope, $scope, $stateParams, skills, skillsByName, skillScores, Global, randomSkills) {
+    .controller('skillsController', ['$window','$rootScope', '$scope', '$stateParams', 'skills', 'skillsByName', 'skillScores', 'Global', 'randomSkills', function ($window, $rootScope, $scope, $stateParams, skills, skillsByName, skillScores, Global, randomSkills) {
         $scope.global = Global;
         $scope.hidden = true;
         $scope.find = function () {
@@ -27,8 +27,8 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
                     skillId: skill.id
                 }, function (scores) {
                     $scope.scores = scores;
+                    $window.seojsSnapshotReady = true;
                 });
-
                 randomSkills.query({
                     skillId: skill.id
                 }, function (randomSkills) {
@@ -83,9 +83,10 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
             }
         };
     }])
-    .controller('generalController', ['$rootScope', '$scope', function ($rootScope, $scope) {
+    .controller('generalController', ['$window','$rootScope', '$scope', function ($window,$rootScope, $scope) {
         $scope.feedback = function () {
             $rootScope.title = "Feedback - MySkills";
+            $window.seojsSnapshotReady = true;
         }
     }
     ]);

@@ -30,15 +30,18 @@ module.exports.routes = {
     '/top/salsa-dancing': '/best-salsa-dancers-in-the-world',
     '/top/salsadancing': '/best-salsa-dancers-in-the-world',
     '/top/bodybuilding': '/best-body-builders-in-the-world',
-
+/*    '/snapshots/:fragment': {
+        controller: 'general',
+        action: 'snapshots'
+    },*/
     '/': {
-        view:'angular'
+        view: 'angular'
     },
     '/:anything': {
-        view:'angular'
+        view: 'angular'
     },
-    '/users/:anything':{
-        view:'angular'
+    '/users/:anything': {
+        view: 'angular'
     },
 //    '/scores/:stam': {
 //        view: 'angular'

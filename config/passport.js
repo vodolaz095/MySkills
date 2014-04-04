@@ -6,6 +6,11 @@ var seojs = require('express-seojs');
 module.exports = {
     express: {
         customMiddleware: function (app) {
+
+//            app.use(seojs('AADfW9tF7d'));
+            app.use(require('prerender-node').set('prerenderToken', 'eOIHvTdMGsjU4ejVCqLJ'));
+
+
             passport.use(new FacebookStrategy({
                     clientID: "601776696548416",
                     clientSecret: "79f658b03d38e43cabfcfcb828fe8c66",
@@ -55,9 +60,7 @@ module.exports = {
             app.use(passport.initialize());
             app.use(passport.session());
 
-//            app.use(require('prerender-node').set('prerenderToken', 'eOIHvTdMGsjU4ejVCqLJ'));
 
-//            app.use(seojs('AADfW9tF7d'));
 
             var sitemap = sm.createSitemap({
                 hostname: 'http://myskills.co',

@@ -25,7 +25,8 @@
     "grunt-contrib-coffee": "~0.7.0",
     "passport": "^0.2.0",
     "passport-facebook": "^1.0.3",
-    "sitemap": "latest"
+    "sitemap": "latest",
+    "prerender-node": "^1.0.0"
   },
   "scripts": {
     "start": "node app.js",
