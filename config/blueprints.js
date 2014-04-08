@@ -1,11 +1,6 @@
 /**
  * Blueprints
  *
- * <%
- * //
- * //  [[ TODO: pull this out into sails-stringfile ]]
- * //
- * %>
  * Sails inspects your controllers, models, and configuration and binds
  * certain routes automatically. These dynamically generated routes are called blueprints.
  *
@@ -105,7 +100,7 @@ module.exports.blueprints = {
    *
    * `shortcuts` are enabled by default, but SHOULD BE DISABLED IN PRODUCTION!!!!!
    */
-  shortcuts: true,
+  shortcuts: false,
 
 
 
