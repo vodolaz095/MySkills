@@ -86,7 +86,6 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
     .controller('generalController', ['$window','$rootScope', '$scope', function ($window,$rootScope, $scope) {
         $scope.feedback = function () {
             $rootScope.title = "Feedback - MySkills";
-            $window.seojsSnapshotReady = true;
         }
     }
     ]);
