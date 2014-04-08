@@ -18,6 +18,7 @@
         "angular-resource": "~1.2",
         "angulartics": "latest",
         "angular-ui-utils": "latest",
-        "bootstrap": "3.1.1"
+        "bootstrap": "3.1.1",
+        "components-font-awesome": "4.0.3"
     }
 }
