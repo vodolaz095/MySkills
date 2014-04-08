@@ -20,7 +20,11 @@
 
 module.exports.connections = {
   localMysqlServer: {
-      //transfered to local.js file
+    adapter : 'sails-mysql',
+    host    : 'localhost',
+    user    : 'myskills',
+    password: 'nK]GTa3*/*Es25',
+    database: 'myskills'
   }
 };
 
