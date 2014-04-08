@@ -1,3 +1,3 @@
-# sailsAngularSeed
+# MySkills
 
-a [Sails](http://sailsjs.org) application
+[http://MySkills.co](http://myskills.co)
