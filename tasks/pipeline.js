@@ -16,7 +16,7 @@
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
     'bower_components/bootstrap/dist/css/bootstrap.min.css',
-    '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css',
+    'bower_components/components-font-awesome/css/font-awesome.min.css',
     'styles/**/*.css'
 ];
 
