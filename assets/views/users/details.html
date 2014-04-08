@@ -11,7 +11,7 @@
                             <div class="media" ng-repeat="friend in friends.data | limitTo:5" ng-show="global.authenticated">
                                 <a href="/{{friend.username || friend.uid}}">
                                     <img class="pull-left img-circle"
-                                         src="https://graph.facebook.com/{{friend.uid}}/picture" height="50" width="50"
+                                         ng-src="https://graph.facebook.com/{{friend.uid}}/picture" height="50" width="50"
                                          style="margin-right:10px">
                                     <h4>{{friend.name}}</h4>
                                 </a>
