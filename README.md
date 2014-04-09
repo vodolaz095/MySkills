@@ -8,8 +8,8 @@ An open-source project to let anyone rate everyone's skills.
 * Website: [http://myskills.co](http://myskills.co)
 
 ## Contribute
-* Pull requests are more than welcome!
-* Add your feature requests, bugs etc to the [Issues](https://github.com/ronenteva/MySkills/issues) section
+* Please use the [issue tracker](https://github.com/ronenteva/MySkills/issues) to report any bugs or request new features. Or, if you're a developer, send a pull request!
+* Add your feature requests, bugs etc to the [Issues](https://github.com/ronenteva/MySkills/issues) section.
 
 ## Support
 * Fund development by creating [Bounties](https://www.bountysource.com/teams/my-skills)
