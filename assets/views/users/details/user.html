@@ -35,11 +35,11 @@
         <input class="form-control" type="text" placeholder="Search skills" ng-model="search.skillName"
                ng-change="checkNewCard(search.skillName, score.skillName)"/>
         <div ng-repeat="score in scores | filter:search | orderBy:'-votes' | limitTo:6" ng-hide="search.skillName">
-            <div score-card user="user" score="score" skill-name="score.skillName"></div>
+            <div score-card user="user.id" score="score" skill-name="score.skillName"></div>
         </div>
         <div ng-repeat="score in scores | filter:search | orderBy:'-votes' | limitTo:5" ng-hide="!search.skillName">
-            <div score-card user="user" score="score" skill-name="score.skillName"></div>
+            <div score-card user="user.id" score="score" skill-name="score.skillName"></div>
         </div>
-        <div score-card user="user" skill-name="search.skillName" ng-show="showNewCard"></div>
+        <div score-card user="user.id" skill-name="search.skillName" ng-show="showNewCard"></div>
     </div>
 </section>
