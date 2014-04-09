@@ -6,7 +6,7 @@
     <div style="width:500px;" class="container">
         <ul class="list-unstyled">
             <li data-ng-repeat="score in scores | orderBy:'rank' | filter:highlightUser"
-                style="padding:10px; position: relative">
+                style="padding:10px; position: relative" ng-class="{highlighted: (highlighted == true || score.userId == global.user.id)}">
                 <div ng-mouseover="hidden=false" ng-mouseout="hidden=true">
                     <span class="rank">{{score.rank}}</span>
                 <span>
