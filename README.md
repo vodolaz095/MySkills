@@ -3,12 +3,13 @@
 </h1>
 
 An open-source project to let anyone rate everyone's skills.
+(More details soon)
 
 * Website: [http://myskills.co](http://myskills.co)
 
-
 ## Contribute
 * Pull requests are more than welcome!
+* Add your feature requests, bugs etc to the [Issues](https://github.com/ronenteva/MySkills/issues) section
 
 ## Support
 * Fund development by creating [Bounties](https://www.bountysource.com/teams/my-skills)
