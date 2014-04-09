@@ -12,3 +12,7 @@ An open-source project to let anyone rate everyone's skills.
 
 ## Support
 * Fund development by creating [Bounties](https://www.bountysource.com/teams/my-skills)
+
+<a target="_blank" href="http://www.mysql.com">
+  <img width="75" src="http://www.mysql.com/common/logos/powered-by-mysql-125x64.png" alt="Powered by MySQL" title="Powered by MySQL"/>
+</a>&nbsp; &nbsp; &nbsp; &nbsp;
