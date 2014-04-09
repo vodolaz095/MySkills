@@ -21,3 +21,6 @@ An open-source project to let anyone rate everyone's skills.
 <a target="_blank" href="http://sailsjs.org">
   <img width="75" src="http://sailsjs.org/images/logo.png" title="Based on Sails.js"/>
 </a>&nbsp; &nbsp; &nbsp; &nbsp;
+<a target="_blank" href="http://angularjs.org">
+  <img width="75" src="http://angularjs.org/img/AngularJS-large.png" title="Based on Angular.js by Google"/>
+</a>&nbsp; &nbsp; &nbsp; &nbsp;
