@@ -27,7 +27,6 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
                     skillId: skill.id
                 }, function (scores) {
                     $scope.scores = scores;
-                    $window.seojsSnapshotReady = true;
                 });
                 randomSkills.query({
                     skillId: skill.id
