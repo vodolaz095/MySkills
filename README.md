@@ -19,5 +19,5 @@ An open-source project to let anyone rate everyone's skills.
   <img width="75" src="http://www.mysql.com/common/logos/powered-by-mysql-125x64.png" alt="Powered by MySQL" title="Powered by MySQL"/>
 </a>&nbsp; &nbsp; &nbsp; &nbsp;
 <a target="_blank" href="http://sailsjs.org">
-  <img width="75" src="http://sailsjs.org/images/logo.png" alt="Powered by Sails.js"/>
+  <img width="75" src="http://sailsjs.org/images/logo.png" title="Based on Sails.js"/>
 </a>&nbsp; &nbsp; &nbsp; &nbsp;
