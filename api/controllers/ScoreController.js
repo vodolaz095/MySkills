@@ -67,12 +67,16 @@ module.exports = {
                     var userFacebookId = score.user.facebookId;
                     var userUsername = score.user.username;
                     var myVote = 0;
+                    var thatsMe = false;
                     if (req.isAuthenticated()) {
                         results[1].forEach(function (vote) {
                             if (userId.toString() == vote.receiver.toString()) {
                                 myVote = vote.score;
                             }
                         });
+                        if (Number(userId) == Number(req.user.id)){
+                            thatsMe = true;
+                        };
                     }
                     if (votes > 0) {
                         rank = rank + 1;
@@ -84,7 +88,8 @@ module.exports = {
                             score: (Math.round(10 * userScore) / 10),
                             votes: votes,
                             myVote: myVote,
-                            rank: rank
+                            rank: rank,
+                            thatsMe: thatsMe
                         })}
                 });
                 res.jsonp(combined);
