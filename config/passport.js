@@ -1,15 +1,10 @@
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var sm = require('sitemap');
-var seojs = require('express-seojs');
 
 module.exports = {
     express: {
         customMiddleware: function (app) {
-
-//            app.use(seojs('AADfW9tF7d'));
-            app.use(require('prerender-node').set('prerenderToken', 'eOIHvTdMGsjU4ejVCqLJ'));
-
 
             passport.use(new FacebookStrategy({
                     clientID: "601776696548416",
