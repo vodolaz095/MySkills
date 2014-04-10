@@ -89,7 +89,7 @@ module.exports = {
 
                 var childArgs = [
                   path.join(__dirname, 'prerenderer', 'phantomjs.notjs'),
-                  'http://localhost:' + (process.env.PORT || 1337) + request.originalUri
+                  'http://localhost:' + (process.env.PORT || 1337) + request.originalUri+'#'+unescape(request.query._escaped_fragment_)
                 ];
 
                 childProcess.execFile(binPath, childArgs, function (err, stdout, stderr) {
