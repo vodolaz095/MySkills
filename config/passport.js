@@ -1,6 +1,10 @@
-var passport = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
-var sm = require('sitemap');
+var passport = require('passport'),
+  FacebookStrategy = require('passport-facebook').Strategy,
+  prerendererConfig = require('./prerenderer/config.json'),
+  phantomjs = require('phantomjs'),
+  childProcess = require('child_process'),
+  path = require('path'),
+  sm = require('sitemap');
 
 module.exports = {
     express: {
@@ -55,7 +59,57 @@ module.exports = {
             app.use(passport.initialize());
             app.use(passport.session());
 
+/*
+ * Middleware for giving Google and other crawlers the prerendered by phantomJS page
+ */
+          app.use(function (request, response, next) {
+            var userAgent = request.headers['user-agent'];
+            if (request.method !== 'GET') {
+              return next;
+            } else {
+              var isBot,
+                isOverride = request.query.overridePrerenderer ? true : false,
+                isNotStatic;
 
+              prerendererConfig.bots.map(function (botName) {
+                if (new RegExp(botName, 'i').test(userAgent)) {
+                  isBot = true;
+                }
+              });
+
+              prerendererConfig.extensionsToIgnore.map(function (extension) {
+                if (new RegExp('\\' + extension + '$', 'i').test(request.originalUrl)) {
+                  isNotStatic = true;
+                }
+              });
+
+
+              if ((isBot && isNotStatic) || isOverride) {
+                var binPath = phantomjs.path;
+
+                var childArgs = [
+                  path.join(__dirname, 'prerenderer', 'phantomjs.notjs'),
+                  'http://localhost:' + (process.env.PORT || 1337) + request.originalUri
+                ];
+
+                childProcess.execFile(binPath, childArgs, function (err, stdout, stderr) {
+                  console.log(stdout);
+                  console.log(stderr);
+                  if (err) {
+                    next(err);
+                  } else {
+                    response.send(stdout);
+                  }
+                });
+              } else {
+                next();
+              }
+            }
+          });
+
+/*
+ * End of prerenderer middleware
+ */
 
             var sitemap = sm.createSitemap({
                 hostname: 'http://myskills.co',
