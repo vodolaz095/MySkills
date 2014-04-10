@@ -71,12 +71,9 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
             )
         };
         $scope.showNewCard = false;
-        $scope.checkNewCard = function (search, score) {
+        $scope.checkNewCard = function (search) {
             if (search == "")
                 $scope.showNewCard = false;
-//            else if (score == search)
-////            if (score == search)
-//                $scope.showNewCard = false;
             else {
                 $scope.showNewCard = true;
             }
