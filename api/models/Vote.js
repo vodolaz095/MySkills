@@ -8,16 +8,20 @@
 module.exports = {
     attributes: {
         voter: {
-            model: 'User'
+            model: 'User',
+            required: true
         },
         receiver: {
-            model: 'User'
+            model: 'User',
+            required: true
         },
         skill: {
-            model: 'Skill'
+            model: 'Skill',
+            required: true
         },
         score: {
-            type: 'integer'
+            type: 'integer',
+            required: true
         }
     },
     afterCreate: function (vote, next) {

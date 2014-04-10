@@ -9,16 +9,20 @@ module.exports = {
 //    autoPK: false,
     attributes: {
         user: {
-            model: 'User'
+            model: 'User',
+            required:true
         },
         skill: {
-            model: 'Skill'
+            model: 'Skill',
+            required: true
         },
         score: {
-            type: 'float'
+            type: 'float',
+            required:true
         },
         votes: {
-            type: 'integer'
+            type: 'integer',
+            required:true
         },
 
         toJSON: function () {
@@ -32,4 +36,5 @@ module.exports = {
     }
 
 
-};
+}
+;
