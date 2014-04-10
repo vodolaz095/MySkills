@@ -1,7 +1,7 @@
 <div class="flip pull-left text-center col-sm-4 col-xs-6">
     <div class="card" ng-class="{flipped: flipped == true}" ng-mouseover="flipped=true" ng-mouseout="flipped=false">
         <div class="face front">
-            <h3 style="font-size:22px">{{score.skillName}}</h3>
+            <h3 style="font-size:22px">{{skillName}}</h3>
 
             <div class="score center-block">{{score.score}}</div>
             <div data-ng-hide="!score.votes" style="font-size:small; margin-top:10px">{{score.votes}} votes</div>
