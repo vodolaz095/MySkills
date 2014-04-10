@@ -8,7 +8,7 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
         $scope.isCollapsed = false;
         $rootScope.title = "MySkills";
     }])
-    .controller('skillsController', ['$window','$rootScope', '$scope', '$stateParams', 'skills', 'skillsByName', 'skillScores', 'Global', 'randomSkills', function ($window, $rootScope, $scope, $stateParams, skills, skillsByName, skillScores, Global, randomSkills) {
+    .controller('skillsController', ['$window', '$rootScope', '$scope', '$stateParams', 'skills', 'skillsByName', 'skillScores', 'Global', 'randomSkills', function ($window, $rootScope, $scope, $stateParams, skills, skillsByName, skillScores, Global, randomSkills) {
         $scope.global = Global;
         $scope.hidden = true;
         $scope.find = function () {
@@ -70,16 +70,20 @@ angular.module('mySkills.controllers', ['ui.router', 'ui.utils'])
                 }
             )
         };
+        $scope.maxItems = 6;
         $scope.showNewCard = false;
         $scope.checkNewCard = function (search) {
-            if (search == "")
+            if (search == "") {
                 $scope.showNewCard = false;
+                $scope.maxItems = 6;
+            }
             else {
                 $scope.showNewCard = true;
+                $scope.maxItems = 5;
             }
         };
     }])
-    .controller('generalController', ['$window','$rootScope', '$scope', function ($window,$rootScope, $scope) {
+    .controller('generalController', ['$window', '$rootScope', '$scope', function ($window, $rootScope, $scope) {
         $scope.feedback = function () {
             $rootScope.title = "Feedback - MySkills";
         }
