@@ -27,7 +27,7 @@
         "passport": "^0.2.0",
         "passport-facebook": "^1.0.3",
         "sitemap": "latest",
-        "prerender-node": "^1.0.0"
+        "phantomjs":"latest"
     },
     "scripts": {
         "start": "node app.js",
