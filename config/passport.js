@@ -68,7 +68,7 @@ module.exports = {
               return next;
             } else {
               var isBot,
-                isOverride = request.query.overridePrerenderer ? true : false,
+                isOverride = request.query._escaped_fragment_ ? true : false,
                 isNotStatic;
 
               prerendererConfig.bots.map(function (botName) {
