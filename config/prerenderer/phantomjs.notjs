@@ -2,13 +2,19 @@ var page = require('webpage').create(),
   system = require('system'),
   address = system.args[1];
 
+page.onConsoleMessage = function (msg) {
+  console.log(msg);
+};
+
 page.open(address, function (status) {
   if (status !== 'success') {
     console.log('Unable to load the address!');
     phantom.exit(1);
   } else {
     window.setTimeout(function () {
-      console.log(page.content);
+      var content =  page.evaluate( function(){return document.toString()} );
+      //console.log(page.content);
+      console.log(content);
       phantom.exit();
     }, 500);
   }
